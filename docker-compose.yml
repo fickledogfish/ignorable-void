@@ -1,0 +1,45 @@
+services:
+  postgres_db:
+    build:
+      context: .
+      dockerfile: Docker/postgres_db/Dockerfile
+    env_file:
+      - Docker/postgres_db/sample.env
+
+  postgres_admin:
+    build:
+      context: .
+      dockerfile: Docker/postgres_admin/Dockerfile
+    restart: on-failure
+    depends_on:
+      - postgres_db
+    ports:
+      - '4001:80'
+    env_file:
+      - Docker/postgres_admin/sample.env
+
+  auth:
+    build:
+      context: .
+      args:
+        SERVICE: auth
+      dockerfile: Docker/service/Dockerfile
+    env_file:
+      - services/auth/sample.env
+    depends_on:
+      - postgres_db
+    ports:
+      - '5001:5001'
+
+  posts:
+    build:
+      context: .
+      args:
+        SERVICE: posts
+      dockerfile: Docker/service/Dockerfile
+    env_file:
+      - services/posts/sample.env
+    depends_on:
+      - postgres_db
+    ports:
+      - '5002:5001'
