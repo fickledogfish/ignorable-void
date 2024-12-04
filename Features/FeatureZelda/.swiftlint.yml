@@ -1,0 +1,85 @@
+strict: true
+
+analyzer_rules:
+  - capture_variable
+  - unused_declaration
+  - unused_import
+
+opt_in_rules:
+  - contains_over_first_not_nil
+  - collection_alignment
+  - conditional_returns_on_newline
+  - discouraged_object_literal
+  - first_where
+  - force_unwrapping
+  - identical_operands
+  - last_where
+  - legacy_random
+  - let_var_whitespace
+  - literal_expression_end_indentation
+  - lower_acl_than_parent
+  - operator_usage_whitespace
+  - overridden_super_call
+  - prohibited_super_call
+  - redundant_nil_coalescing
+  - joined_default_parameter
+  - unavailable_function
+  - comma_inheritance
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - discarded_notification_center_observer
+  - contains_over_range_nil_comparison
+  - convenience_type
+  - fallthrough
+  - redundant_type_annotation
+  - empty_collection_literal
+  - explicit_enum_raw_value
+  - file_name_no_space
+  - flatmap_over_map_reduce
+  - implicitly_unwrapped_optional
+  - legacy_multiple
+  - reduce_into
+  - sorted_first_last
+  - toggle_bool
+  - unowned_variable_capture
+  - untyped_error_in_catch
+  - implicit_return
+  - empty_count
+  - array_init
+  - empty_string
+  - weak_delegate
+  - yoda_condition
+  - modifier_order
+  - closure_spacing
+  - closure_end_indentation
+
+cyclomatic_complexity:
+  ignores_case_statements: true
+
+file_length:
+  warning: 300
+  ignore_comment_only_lines: true
+
+line_length:
+  warning: 120
+  ignores_function_declarations: true
+  ignores_comments: true
+  ignores_interpolated_strings: true
+  ignores_urls: true
+
+type_name:
+  max_length: 50
+  excluded:
+  - Id
+
+identifier_name:
+  min_length: 3
+  allowed_symbols: "_"
+  excluded:
+    - id
+
+nesting:
+  type_level: 3
+  function_level: 3
+  check_nesting_in_closures_and_statements: true
+  always_allow_one_type_in_functions: false
