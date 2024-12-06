@@ -1,9 +1,9 @@
 package signupserv
 
 import (
-	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 
+	"example.com/core/uuid"
 	"example.com/services/auth/core/domain"
 	"example.com/services/auth/core/ports"
 )

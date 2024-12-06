@@ -1,6 +1,6 @@
 package domain
 
-import "github.com/google/uuid"
+import "example.com/core/uuid"
 
 type AccessToken struct {
 	Id          uuid.UUID

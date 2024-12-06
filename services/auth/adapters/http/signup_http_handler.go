@@ -5,10 +5,11 @@ import (
 	"net/http"
 
 	"example.com/core/responses"
+	"example.com/core/uuid"
+
 	"example.com/services/auth/adapters/http/dto"
 	"example.com/services/auth/core/domain"
 	"example.com/services/auth/core/ports"
-	"github.com/google/uuid"
 )
 
 type signUpHttpHandler struct {

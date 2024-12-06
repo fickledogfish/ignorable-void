@@ -3,10 +3,10 @@ package dbadapters
 import (
 	"database/sql"
 
+	"example.com/core/uuid"
 	"example.com/services/auth/adapters/db/dto"
 	"example.com/services/auth/core/domain"
 	prepared_sql "example.com/services/auth/sql/prepared"
-	"github.com/google/uuid"
 )
 
 type userRetriever struct {

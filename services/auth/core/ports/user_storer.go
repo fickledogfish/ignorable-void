@@ -1,9 +1,8 @@
 package ports
 
 import (
+	"example.com/core/uuid"
 	"example.com/services/auth/core/domain"
-
-	"github.com/google/uuid"
 )
 
 type UserStorer interface {

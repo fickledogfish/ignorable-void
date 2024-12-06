@@ -3,7 +3,7 @@ package dbadapters
 import (
 	"database/sql"
 
-	"github.com/google/uuid"
+	"example.com/core/uuid"
 
 	"example.com/services/auth/core/domain"
 	prepared_sql "example.com/services/auth/sql/prepared"
