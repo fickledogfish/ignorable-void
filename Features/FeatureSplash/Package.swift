@@ -29,6 +29,9 @@ let package = Package(
                 .product(name: "DesignTheme", package: "DesignTheme"),
             ],
             path: "Sources",
+            resources: [
+                .process("View/Resources")
+            ],
             plugins: [
                 .plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins"),
             ]

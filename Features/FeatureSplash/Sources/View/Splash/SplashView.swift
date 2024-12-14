@@ -5,11 +5,14 @@ import class DesignTheme.DesignTheme
 import class DesignTheme.VariableDesignTheme
 
 @MainActor
-struct SplashScreenView<Presenter: SplashScreenPresenter> {
+struct SplashView<Presenter: SplashPresenter> {
     // MARK: - Private members
 
     @EnvironmentObject
     private var theme: DesignTheme
+
+    @Environment(\.splashViewOnFinish)
+    private var onFinish
 
     @StateObject
     private var presenter: Presenter
@@ -29,7 +32,7 @@ struct SplashScreenView<Presenter: SplashScreenPresenter> {
 
 // MARK: - View
 
-extension SplashScreenView: View {
+extension SplashView: View {
     var body: some View {
         VStack(spacing: theme.cgFloat(spacing: .large)) {
             Text("Some App")
@@ -56,12 +59,12 @@ extension SplashScreenView: View {
 // MARK: - Previews
 
 private enum Previews {
-    final class Presenter: SplashScreenPresenter {
+    final class Presenter: SplashPresenter {
     }
 }
 
 #Preview {
-    SplashScreenView(
+    SplashView(
         Previews.Presenter.self,
         presenter: Previews.Presenter()
     )

@@ -1,0 +1,2 @@
+actor SplashPresentation: SplashPresenter {
+}
