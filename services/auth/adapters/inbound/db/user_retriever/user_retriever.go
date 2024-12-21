@@ -1,24 +1,15 @@
-package dbadapters
+package userretrieverdbinboundadapter
 
 import (
 	"database/sql"
 
 	"example.com/core/uuid"
-	"example.com/services/auth/adapters/db/dto"
 	"example.com/services/auth/core/domain"
 	prepared_sql "example.com/services/auth/sql/prepared"
 )
 
 type userRetriever struct {
 	db *sql.DB
-}
-
-func NewUserRetriever(
-	db *sql.DB,
-) *userRetriever {
-	return &userRetriever{
-		db: db,
-	}
 }
 
 func (s *userRetriever) RetrieveUserWithName(
@@ -34,8 +25,8 @@ func (s *userRetriever) RetrieveUserWithName(
 	}
 	defer statement.Close()
 
-	var user dto.User
-	if storedUser, err := dto.NewUserFromRow(
+	var user userDto
+	if storedUser, err := newUserFromRow(
 		statement.QueryRow(username),
 	); err != nil {
 		if err == sql.ErrNoRows {

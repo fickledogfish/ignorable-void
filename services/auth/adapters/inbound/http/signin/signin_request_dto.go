@@ -1,6 +1,6 @@
-package dto
+package signinhttpinboundadapter
 
-type SignUpRequest struct {
+type signInRequestDto struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
 }

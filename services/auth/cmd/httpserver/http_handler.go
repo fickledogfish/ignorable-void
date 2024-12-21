@@ -1,4 +1,4 @@
-package httphandler
+package main
 
 import (
 	"fmt"
@@ -13,7 +13,7 @@ type httpHandler struct {
 	signUpHandler signUpHttpHandler
 }
 
-func NewHttpHandler(
+func newHttpHandler(
 	port string,
 	signInHandler signInHttpHandler,
 	signUpHandler signUpHttpHandler,

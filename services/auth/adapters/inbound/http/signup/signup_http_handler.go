@@ -1,4 +1,4 @@
-package httpadapters
+package signuphttpinboundadapter
 
 import (
 	"encoding/json"
@@ -7,7 +7,6 @@ import (
 	"example.com/core/responses"
 	"example.com/core/uuid"
 
-	"example.com/services/auth/adapters/http/dto"
 	"example.com/services/auth/core/domain"
 	"example.com/services/auth/core/ports"
 )
@@ -16,19 +15,11 @@ type signUpHttpHandler struct {
 	service ports.SignUpService
 }
 
-func NewSignUpHttpHandler(
-	service ports.SignUpService,
-) *signUpHttpHandler {
-	return &signUpHttpHandler{
-		service: service,
-	}
-}
-
 func (handler *signUpHttpHandler) ServeHTTP(
 	w http.ResponseWriter,
 	r *http.Request,
 ) {
-	var decodedBody dto.SignInRequest
+	var decodedBody signUpRequestDto
 	if err := json.NewDecoder(r.Body).Decode(&decodedBody); err != nil {
 		responses.BadRequest(w, r, err.Error())
 		return
@@ -47,7 +38,7 @@ func (handler *signUpHttpHandler) ServeHTTP(
 		userId = id
 	}
 
-	responses.Ok(w, r, dto.SignUpResponse{
+	responses.Ok(w, r, signUpResponseDto{
 		Id:       userId.String(),
 		Username: decodedBody.Username,
 	})

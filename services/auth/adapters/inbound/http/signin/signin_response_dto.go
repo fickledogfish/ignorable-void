@@ -1,6 +1,6 @@
-package dto
+package signinhttpinboundadapter
 
-type SignInResponse struct {
+type signInResponseDto struct {
 	Id          string `json:"id"`
 	AccessToken string `json:"access_token"`
 }

@@ -1,6 +1,6 @@
-package dto
+package signuphttpinboundadapter
 
-type SignUpResponse struct {
+type signUpResponseDto struct {
 	Id       string `json:"id"`
 	Username string `json:"username"`
 }

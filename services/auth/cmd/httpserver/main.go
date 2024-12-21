@@ -8,11 +8,12 @@ import (
 	_ "github.com/lib/pq"
 
 	"example.com/core/environment"
-	dbadapters "example.com/services/auth/adapters/db"
-	httpadapters "example.com/services/auth/adapters/http"
+	userretrieverdbinboundadapter "example.com/services/auth/adapters/inbound/db/user_retriever"
+	signinhttpinboundadapter "example.com/services/auth/adapters/inbound/http/signin"
+	signuphttpinboundadapter "example.com/services/auth/adapters/inbound/http/signup"
+	userstorerdboutboundadapter "example.com/services/auth/adapters/outbound/db/user_storer"
 	signinserv "example.com/services/auth/core/services/signin"
 	signupserv "example.com/services/auth/core/services/signup"
-	httphandler "example.com/services/auth/handlers/http"
 )
 
 const (
@@ -28,17 +29,17 @@ func main() {
 		panic(err)
 	}
 
-	log.Fatal(httphandler.NewHttpHandler(
+	log.Fatal(newHttpHandler(
 		environment.ValueFor(envPort),
-		httpadapters.NewSignInHttpHandler(
+		signinhttpinboundadapter.New(
 			signinserv.New(
-				dbadapters.NewUserRetriever(dbConnection),
+				userretrieverdbinboundadapter.New(dbConnection),
 			),
 		),
-		httpadapters.NewSignUpHttpHandler(
+		signuphttpinboundadapter.New(
 			signupserv.New(
-				dbadapters.NewUserStorer(dbConnection),
-				dbadapters.NewUserRetriever(dbConnection),
+				userstorerdboutboundadapter.New(dbConnection),
+				userretrieverdbinboundadapter.New(dbConnection),
 			),
 		),
 	).ListenAndServe())

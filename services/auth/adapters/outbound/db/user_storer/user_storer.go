@@ -1,4 +1,4 @@
-package dbadapters
+package userstorerdboutboundadapter
 
 import (
 	"database/sql"
@@ -11,14 +11,6 @@ import (
 
 type userStorer struct {
 	db *sql.DB
-}
-
-func NewUserStorer(
-	db *sql.DB,
-) *userStorer {
-	return &userStorer{
-		db: db,
-	}
 }
 
 func (s *userStorer) StoreUser(

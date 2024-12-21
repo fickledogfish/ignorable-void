@@ -1,17 +1,17 @@
-package dto
+package userretrieverdbinboundadapter
 
 import "database/sql"
 
-type User struct {
+type userDto struct {
 	Id string
 
 	Username string
 	Password string
 }
 
-func NewUserFromRow(
+func newUserFromRow(
 	row *sql.Row,
-) (user User, err error) {
+) (user userDto, err error) {
 	err = row.Scan(
 		&user.Id,
 		&user.Username,
