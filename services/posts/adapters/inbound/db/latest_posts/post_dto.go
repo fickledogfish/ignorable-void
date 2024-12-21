@@ -1,11 +1,11 @@
-package dto
+package latestpostsdbinboundadapter
 
 import (
 	"database/sql"
 	"time"
 )
 
-type Post struct {
+type postDto struct {
 	Id string
 
 	UserId    string
@@ -13,9 +13,9 @@ type Post struct {
 	Timestamp time.Time
 }
 
-func NewPostFromRows(
+func newPostFromRows(
 	row *sql.Rows,
-) (post Post, err error) {
+) (post postDto, err error) {
 	err = row.Scan(
 		&post.Id,
 		&post.UserId,

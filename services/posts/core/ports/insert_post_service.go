@@ -1,8 +1,8 @@
 package ports
 
 import (
+	"example.com/core/uuid"
 	"example.com/services/posts/core/domain"
-	"github.com/google/uuid"
 )
 
 type InsertPostService interface {

@@ -1,11 +1,10 @@
-package httpadapters
+package latestpostshttpinboundadapter
 
 import (
 	"net/http"
 	"strconv"
 
 	"example.com/core/responses"
-	"example.com/services/posts/adapters/http/dto"
 	"example.com/services/posts/core/domain"
 	"example.com/services/posts/core/ports"
 )
@@ -14,7 +13,7 @@ type latestPostsHttpHandler struct {
 	service ports.LatestPostsService
 }
 
-func NewLatestPostsHttpHandler(
+func New(
 	service ports.LatestPostsService,
 ) *latestPostsHttpHandler {
 	return &latestPostsHttpHandler{
@@ -30,7 +29,7 @@ func (h *latestPostsHttpHandler) ServeHTTP(
 	if requestedCount, err := func() (int, error) {
 		countParam := r.URL.Query().Get("max")
 		if countParam == "" {
-			return 0, nil
+			return 10, nil
 		}
 
 		return strconv.Atoi(countParam)
@@ -47,11 +46,11 @@ func (h *latestPostsHttpHandler) ServeHTTP(
 		posts = latestPosts
 	}
 
-	var response []dto.LatestPostsItemResponse
+	var response []latestPostsItemResponse
 	for _, post := range posts {
 		response = append(
 			response,
-			dto.NewLatestPostsItemResponseFromDomain(post),
+			newLatestPostsItemResponseFromDomain(post),
 		)
 	}
 

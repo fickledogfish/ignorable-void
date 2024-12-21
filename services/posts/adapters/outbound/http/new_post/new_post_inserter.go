@@ -1,4 +1,4 @@
-package dbadapters
+package newposthttpoutboundadapter
 
 import (
 	"database/sql"
@@ -9,14 +9,6 @@ import (
 
 type newPostInserter struct {
 	db *sql.DB
-}
-
-func NewPostInserter(
-	db *sql.DB,
-) *newPostInserter {
-	return &newPostInserter{
-		db: db,
-	}
 }
 
 func (s *newPostInserter) InsertNewPost(

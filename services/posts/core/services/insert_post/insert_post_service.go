@@ -1,9 +1,9 @@
 package insertpostserv
 
 import (
+	"example.com/core/uuid"
 	"example.com/services/posts/core/domain"
 	"example.com/services/posts/core/ports"
-	"github.com/google/uuid"
 )
 
 type insertPostService struct {

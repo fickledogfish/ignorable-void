@@ -3,7 +3,7 @@ package domain
 import (
 	"time"
 
-	"github.com/google/uuid"
+	"example.com/core/uuid"
 )
 
 type Post struct {

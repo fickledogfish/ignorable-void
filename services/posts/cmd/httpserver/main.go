@@ -8,11 +8,12 @@ import (
 	_ "github.com/lib/pq"
 
 	"example.com/core/environment"
-	dbadapters "example.com/services/posts/adapters/db"
-	httpadapters "example.com/services/posts/adapters/http"
+	latestpostsdbinboundadapter "example.com/services/posts/adapters/inbound/db/latest_posts"
+	insertposthttpinboundadapter "example.com/services/posts/adapters/inbound/http/insert_post"
+	latestpostshttpinboundadapter "example.com/services/posts/adapters/inbound/http/latest_posts"
+	newposthttpoutboundadapter "example.com/services/posts/adapters/outbound/http/new_post"
 	insertpostserv "example.com/services/posts/core/services/insert_post"
 	latestpostsserv "example.com/services/posts/core/services/latest_posts"
-	httphandler "example.com/services/posts/handlers/http"
 )
 
 const (
@@ -28,16 +29,16 @@ func main() {
 		panic(err)
 	}
 
-	log.Fatal(httphandler.NewHttpHandler(
+	log.Fatal(newHttpHandler(
 		environment.ValueFor(envPort),
-		httpadapters.NewInsertPostHttpHandler(
+		insertposthttpinboundadapter.New(
 			insertpostserv.New(
-				dbadapters.NewPostInserter(connection),
+				newposthttpoutboundadapter.New(connection),
 			),
 		),
-		httpadapters.NewLatestPostsHttpHandler(
+		latestpostshttpinboundadapter.New(
 			latestpostsserv.New(
-				dbadapters.NewLatestPostsRetriever(connection),
+				latestpostsdbinboundadapter.New(connection),
 			),
 		),
 	).ListenAndServe())

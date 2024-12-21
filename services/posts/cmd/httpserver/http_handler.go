@@ -1,4 +1,4 @@
-package httphandler
+package main
 
 import (
 	"fmt"
@@ -14,7 +14,7 @@ type httpHandler struct {
 	latestPosts latestPostsHttpHandler
 }
 
-func NewHttpHandler(
+func newHttpHandler(
 	port string,
 	insertPost insertPostHttpHandler,
 	latestPosts latestPostsHttpHandler,

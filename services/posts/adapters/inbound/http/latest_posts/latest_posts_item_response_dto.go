@@ -1,4 +1,4 @@
-package dto
+package latestpostshttpinboundadapter
 
 import (
 	"time"
@@ -6,7 +6,7 @@ import (
 	"example.com/services/posts/core/domain"
 )
 
-type LatestPostsItemResponse struct {
+type latestPostsItemResponse struct {
 	Id string `json:"id"`
 
 	UserId    string    `json:"user_id"`
@@ -14,10 +14,10 @@ type LatestPostsItemResponse struct {
 	Timestamp time.Time `json:"timestamp"`
 }
 
-func NewLatestPostsItemResponseFromDomain(
+func newLatestPostsItemResponseFromDomain(
 	post domain.Post,
-) LatestPostsItemResponse {
-	return LatestPostsItemResponse{
+) latestPostsItemResponse {
+	return latestPostsItemResponse{
 		Id: post.Id.String(),
 
 		UserId:    post.UserId.String(),

@@ -1,24 +1,15 @@
-package dbadapters
+package latestpostsdbinboundadapter
 
 import (
 	"database/sql"
 
-	"example.com/services/posts/adapters/db/dto"
+	"example.com/core/uuid"
 	"example.com/services/posts/core/domain"
 	prepared_sql "example.com/services/posts/sql/prepared"
-	"github.com/google/uuid"
 )
 
 type latestPostsRetriever struct {
 	db *sql.DB
-}
-
-func NewLatestPostsRetriever(
-	db *sql.DB,
-) *latestPostsRetriever {
-	return &latestPostsRetriever{
-		db: db,
-	}
 }
 
 func (s *latestPostsRetriever) GetLatestPosts(
@@ -44,7 +35,7 @@ func (s *latestPostsRetriever) GetLatestPosts(
 
 	var posts []domain.Post
 	for rows.Next() {
-		post, err := dto.NewPostFromRows(rows)
+		post, err := newPostFromRows(rows)
 		if err != nil {
 			return []domain.Post{}, nil
 		}
